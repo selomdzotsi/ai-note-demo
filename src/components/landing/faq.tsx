@@ -30,25 +30,27 @@ const faqs = [
 
 export function FAQ() {
   return (
-    <section id="faq" className="container py-24 sm:py-32">
-      <div className="mb-16 flex flex-col items-center text-center">
-        <h2 className="text-3xl font-bold leading-tight tracking-tighter md:text-5xl lg:leading-[1.1]">
-          Frequently Asked Questions
-        </h2>
-        <p className="mt-4 max-w-[750px] text-lg text-muted-foreground sm:text-xl">
-          Everything you need to know about AI Notes. Can't find the answer you're looking for? 
-          <a href="#contact" className="underline underline-offset-4 hover:text-primary"> Contact us</a>
-        </p>
-      </div>
-      <div className="mx-auto max-w-[800px]">
-        <Accordion type="single" collapsible className="w-full">
-          {faqs.map((faq, index) => (
-            <AccordionItem key={index} value={`item-${index}`}>
-              <AccordionTrigger className="text-left">{faq.question}</AccordionTrigger>
-              <AccordionContent>{faq.answer}</AccordionContent>
-            </AccordionItem>
-          ))}
-        </Accordion>
+    <section id="faq" className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
+      <div className="py-24 sm:py-32">
+        <div className="mb-16 flex flex-col items-center text-center">
+          <h2 className="text-3xl font-bold leading-tight tracking-tighter md:text-5xl lg:leading-[1.1]">
+            Frequently Asked Questions
+          </h2>
+          <p className="mt-4 max-w-[750px] text-lg text-muted-foreground sm:text-xl">
+            Everything you need to know about AI Notes. Can't find the answer you're looking for? 
+            <a href="#contact" className="underline underline-offset-4 hover:text-primary"> Contact us</a>
+          </p>
+        </div>
+        <div className="mx-auto max-w-[800px]">
+          <Accordion type="single" collapsible className="w-full">
+            {faqs.map((faq, index) => (
+              <AccordionItem key={index} value={`item-${index}`}>
+                <AccordionTrigger className="text-left">{faq.question}</AccordionTrigger>
+                <AccordionContent>{faq.answer}</AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
+        </div>
       </div>
     </section>
   )

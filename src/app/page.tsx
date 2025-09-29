@@ -6,9 +6,9 @@ import { Footer } from "@/components/landing/footer"
 
 export default function Home() {
   return (
-    <div className="relative flex min-h-screen flex-col">
+    <div className="relative min-h-screen">
       <Navbar />
-      <main className="flex-1">
+      <main className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
         <Hero />
         <Features />
         <FAQ />
