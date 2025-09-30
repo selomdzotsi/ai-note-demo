@@ -41,18 +41,18 @@ const navigation = {
 
 export function Footer() {
   return (
-    <footer className="border-t">
+    <footer className="border-t border-purple-500/20">
       <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
         <div className="py-16">
           <div className="grid gap-8 sm:grid-cols-2 md:grid-cols-4">
             <div>
-              <h3 className="text-base font-semibold">Product</h3>
+              <h3 className="text-base font-semibold gradient-text">Product</h3>
               <ul className="mt-4 space-y-3">
                 {navigation.product.map((item) => (
                   <li key={item.name}>
                     <Link
                       href={item.href}
-                      className="text-sm text-muted-foreground hover:text-primary"
+                      className="text-sm text-muted-foreground transition-colors hover:text-primary"
                     >
                       {item.name}
                     </Link>
@@ -61,13 +61,13 @@ export function Footer() {
               </ul>
             </div>
             <div>
-              <h3 className="text-base font-semibold">Company</h3>
+              <h3 className="text-base font-semibold gradient-text">Company</h3>
               <ul className="mt-4 space-y-3">
                 {navigation.company.map((item) => (
                   <li key={item.name}>
                     <Link
                       href={item.href}
-                      className="text-sm text-muted-foreground hover:text-primary"
+                      className="text-sm text-muted-foreground transition-colors hover:text-primary"
                     >
                       {item.name}
                     </Link>
@@ -76,13 +76,13 @@ export function Footer() {
               </ul>
             </div>
             <div>
-              <h3 className="text-base font-semibold">Legal</h3>
+              <h3 className="text-base font-semibold gradient-text">Legal</h3>
               <ul className="mt-4 space-y-3">
                 {navigation.legal.map((item) => (
                   <li key={item.name}>
                     <Link
                       href={item.href}
-                      className="text-sm text-muted-foreground hover:text-primary"
+                      className="text-sm text-muted-foreground transition-colors hover:text-primary"
                     >
                       {item.name}
                     </Link>
@@ -91,13 +91,13 @@ export function Footer() {
               </ul>
             </div>
             <div>
-              <h3 className="text-base font-semibold">Follow Us</h3>
+              <h3 className="text-base font-semibold gradient-text">Follow Us</h3>
               <ul className="mt-4 flex space-x-6">
                 {navigation.social.map((item) => (
                   <li key={item.name}>
                     <Link
                       href={item.href}
-                      className="text-muted-foreground hover:text-primary"
+                      className="text-muted-foreground transition-colors hover:text-primary"
                     >
                       <span className="sr-only">{item.name}</span>
                       <item.icon className="h-5 w-5" aria-hidden="true" />
@@ -107,7 +107,7 @@ export function Footer() {
               </ul>
             </div>
           </div>
-          <Separator className="my-8" />
+          <Separator className="my-8 bg-purple-500/20" />
           <div className="flex flex-col items-center justify-between gap-4 sm:flex-row">
             <p className="text-sm text-muted-foreground">
               &copy; {new Date().getFullYear()} AI Notes. All rights reserved.
