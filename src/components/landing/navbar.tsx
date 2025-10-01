@@ -1,7 +1,10 @@
+'use client'
+
 import Link from 'next/link'
 import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import { Menu } from "lucide-react"
+import { SignInButton, SignUpButton, UserButton, SignedIn, SignedOut } from "@clerk/nextjs"
 
 const navigation = [
   { name: 'Features', href: '#features' },
@@ -32,12 +35,21 @@ export function Navbar() {
         
         <div className="flex items-center gap-2">
           <div className="hidden md:flex md:gap-2">
-            <Button variant="ghost" className="hover:bg-purple-500/10 hover:text-white" asChild>
-              <Link href="/login">Sign in</Link>
-            </Button>
-            <Button className="gradient-bg hover:opacity-90" asChild>
-              <Link href="/register">Get Started</Link>
-            </Button>
+            <SignedOut>
+              <SignInButton>
+                <Button variant="ghost" className="hover:bg-purple-500/10 hover:text-white">
+                  Sign in
+                </Button>
+              </SignInButton>
+              <SignUpButton>
+                <Button className="gradient-bg hover:opacity-90">
+                  Get Started
+                </Button>
+              </SignUpButton>
+            </SignedOut>
+            <SignedIn>
+              <UserButton afterSignOutUrl="/" />
+            </SignedIn>
           </div>
           <Sheet>
             <SheetTrigger asChild className="md:hidden">
@@ -57,18 +69,21 @@ export function Navbar() {
                     {item.name}
                   </Link>
                 ))}
-                <Link
-                  href="/login"
-                  className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
-                >
-                  Sign in
-                </Link>
-                <Link
-                  href="/register"
-                  className="text-sm font-medium gradient-text transition-colors"
-                >
-                  Get Started
-                </Link>
+                <SignedOut>
+                  <SignInButton>
+                    <button className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary w-full text-left">
+                      Sign in
+                    </button>
+                  </SignInButton>
+                  <SignUpButton>
+                    <button className="text-sm font-medium gradient-text transition-colors w-full text-left">
+                      Get Started
+                    </button>
+                  </SignUpButton>
+                </SignedOut>
+                <SignedIn>
+                  <UserButton afterSignOutUrl="/" />
+                </SignedIn>
               </div>
             </SheetContent>
           </Sheet>
