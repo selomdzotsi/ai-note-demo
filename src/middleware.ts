@@ -4,7 +4,8 @@ export default clerkMiddleware({
   publicRoutes: [
     "/",
     "/api/sign-in",
-    "/api/sign-up"
+    "/api/sign-up",
+    "/api/auth" // Allow access to auth endpoint
   ]
 })
 

@@ -11,11 +11,10 @@ datasource db {
 }
 
 model User {
-  id        String   @id @default(cuid())
+  id        String   @id // Using Clerk's ID
   email     String   @unique
-  f_name    String
-  l_name    String
-  password  String
+  f_name    String   // Required
+  l_name    String   // Required
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   notes     Note[]
