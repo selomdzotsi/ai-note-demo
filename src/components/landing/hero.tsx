@@ -1,5 +1,8 @@
+'use client'
+
 import Link from 'next/link'
 import { Button } from "@/components/ui/button"
+import { SignUpButton } from "@clerk/nextjs"
 
 export function Hero() {
   return (
@@ -20,11 +23,11 @@ export function Hero() {
             </p>
           </div>
           <div className="flex gap-4">
-            <Button size="lg" className="gradient-bg px-8 py-6 text-lg" asChild>
-              <Link href="/register">
+            <SignUpButton mode="modal">
+              <Button size="lg" className="gradient-bg px-8 py-6 text-lg">
                 Get Started Free
-              </Link>
-            </Button>
+              </Button>
+            </SignUpButton>
             <Button 
               size="lg" 
               variant="outline" 

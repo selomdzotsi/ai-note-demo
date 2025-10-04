@@ -36,18 +36,21 @@ export function Navbar() {
         <div className="flex items-center gap-2">
           <div className="hidden md:flex md:gap-2">
             <SignedOut>
-              <SignInButton>
+              <SignInButton afterSignInUrl="/dashboard" mode="modal">
                 <Button variant="ghost" className="hover:bg-purple-500/10 hover:text-white">
                   Sign in
                 </Button>
               </SignInButton>
-              <SignUpButton>
+              <SignUpButton afterSignUpUrl="/dashboard" mode="modal">
                 <Button className="gradient-bg hover:opacity-90">
                   Get Started
                 </Button>
               </SignUpButton>
             </SignedOut>
             <SignedIn>
+              <Button variant="ghost" className="hover:bg-purple-500/10 hover:text-white" asChild>
+                <Link href="/dashboard">Dashboard</Link>
+              </Button>
               <UserButton afterSignOutUrl="/" />
             </SignedIn>
           </div>
@@ -70,18 +73,24 @@ export function Navbar() {
                   </Link>
                 ))}
                 <SignedOut>
-                  <SignInButton>
+                  <SignInButton afterSignInUrl="/dashboard" mode="modal">
                     <button className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary w-full text-left">
                       Sign in
                     </button>
                   </SignInButton>
-                  <SignUpButton>
+                  <SignUpButton afterSignUpUrl="/dashboard" mode="modal">
                     <button className="text-sm font-medium gradient-text transition-colors w-full text-left">
                       Get Started
                     </button>
                   </SignUpButton>
                 </SignedOut>
                 <SignedIn>
+                  <Link
+                    href="/dashboard"
+                    className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
+                  >
+                    Dashboard
+                  </Link>
                   <UserButton afterSignOutUrl="/" />
                 </SignedIn>
               </div>
