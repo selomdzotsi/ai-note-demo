@@ -13,6 +13,7 @@ import {
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { useToast } from '@/components/ui/use-toast'
+import { Wand2 } from 'lucide-react'
 
 interface NoteDialogProps {
   isOpen: boolean
@@ -28,6 +29,7 @@ export function NoteDialog({ isOpen, onClose, onSubmit, initialData }: NoteDialo
   const [title, setTitle] = useState(initialData?.title ?? '')
   const [content, setContent] = useState(initialData?.content ?? '')
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [isGenerating, setIsGenerating] = useState(false)
   const { toast } = useToast()
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -46,6 +48,39 @@ export function NoteDialog({ isOpen, onClose, onSubmit, initialData }: NoteDialo
       })
     } finally {
       setIsSubmitting(false)
+    }
+  }
+
+  const handleAIGenerate = async () => {
+    try {
+      setIsGenerating(true)
+      const prompt = `Generate a detailed note about: ${title}`
+      
+      const response = await fetch('/api/ai/generate', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ prompt })
+      })
+
+      if (!response.ok) {
+        throw new Error('Failed to generate content')
+      }
+
+      const data = await response.json()
+      setContent(data.content)
+      
+      toast({
+        title: "Success",
+        description: "AI content generated successfully!",
+      })
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Failed to generate content. Please try again.",
+        variant: "destructive",
+      })
+    } finally {
+      setIsGenerating(false)
     }
   }
 
@@ -70,13 +105,25 @@ export function NoteDialog({ isOpen, onClose, onSubmit, initialData }: NoteDialo
               />
             </div>
             <div className="grid gap-2">
-              <Textarea
-                placeholder="Write your note content here..."
-                value={content}
-                onChange={(e) => setContent(e.target.value)}
-                className="min-h-[200px] border-purple-500/20"
-                required
-              />
+              <div className="flex items-center gap-2">
+                <Textarea
+                  placeholder="Write your note content here..."
+                  value={content}
+                  onChange={(e) => setContent(e.target.value)}
+                  className="min-h-[200px] border-purple-500/20"
+                  required
+                />
+                <Button
+                  type="button"
+                  variant="outline"
+                  size="icon"
+                  className="h-full border-purple-500/20"
+                  onClick={handleAIGenerate}
+                  disabled={!title || isGenerating}
+                >
+                  <Wand2 className="h-4 w-4" />
+                </Button>
+              </div>
             </div>
           </div>
           <DialogFooter>
@@ -101,5 +148,3 @@ export function NoteDialog({ isOpen, onClose, onSubmit, initialData }: NoteDialo
     </Dialog>
   )
 }
-
-
